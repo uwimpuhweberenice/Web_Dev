@@ -1,0 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Model;
+
+import java.util.List;
+import java.util.UUID;
+
+/**
+ *
+ * @author Berenice
+ */
+public class WalletModel {
+    private UUID walletId;
+    private UUID traderId;
+    private double balance;
+    private List<String> transactionHistory;
+
+    public WalletModel(UUID walletId, UUID traderId, double balance, List<String> transactionHistory) {
+        this.walletId = walletId;
+        this.traderId = traderId;
+        this.balance = balance;
+        this.transactionHistory = transactionHistory;
+    }
+
+    public WalletModel() {
+    }
+
+    public UUID getWalletId() {
+        return walletId;
+    }
+
+    public void setWalletId(UUID walletId) {
+        this.walletId = walletId;
+    }
+
+    public UUID getTraderId() {
+        return traderId;
+    }
+
+    public void setTraderId(UUID traderId) {
+        this.traderId = traderId;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public List<String> getTransactionHistory() {
+        return transactionHistory;
+    }
+
+    public void setTransactionHistory(List<String> transactionHistory) {
+        this.transactionHistory = transactionHistory;
+    }
+    
+    
+}
