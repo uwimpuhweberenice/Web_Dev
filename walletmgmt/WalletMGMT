@@ -1,0 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package walletmgmt;
+
+import DAO.WalletDAO;
+import Model.WalletModel;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Berenice
+ */
+public class WalletMGMT {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        WalletDAO walletDAO = new WalletDAO();
+        WalletModel wObj = new WalletModel();
+        
+        Scanner sc = new Scanner(System.in);
+        int choice = 0;
+        
+        do {
+            System.out.println("Welcome to the Wallet Mgmt");
+            System.out.println("==========================");
+            System.out.println("1. Create a wallet");
+            System.out.println("Choose:");
+            
+            choice = sc.nextInt();
+            
+            switch (choice) {
+                case 1:
+                    walletDAO.createWallet(wObj);
+                    break;
+            }
+        }while(choice != 4);
+        
+        sc.close();
+    }
+    
+}
