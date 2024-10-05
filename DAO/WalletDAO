@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import Model.WalletModel;
+import java.sql.*;
+import java.util.List;
+
+/**
+ *
+ * @author Berenice
+ */
+public class WalletDAO {
+    private String url = "jdbc:postgresql://localhost:5432/Wallet";
+    private String username = "Berenice";
+    private String password = "logiic@123";
+    
+    public String createWallet(WalletModel wObj){
+        try{
+            Class.forName("org.postgresql.Driver");
+            
+            Connection conn = DriverManager.getConnection(url, username, password);
+            String sql = "INSERT INTO Wallet(WalletID, TraderID, Balance, TransactionHistory) VALUES(?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, wObj.getWalletId().toString());
+            pst.setString(2, wObj.getTraderId().toString());
+            pst.setDouble(3, wObj.getBalance());
+            
+            List<String> transactionHistory = wObj.getTransactionHistory();
+            String transactionHistoryStr = String.join(",", transactionHistory);
+            pst.setString(4, transactionHistoryStr);
+            
+            int rowsAffected = pst.executeUpdate();
+            conn.close();
+            
+            if(rowsAffected >=1){
+                return "Data Saved Successfully";
+            }else{
+                return "Data Not Saved";
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return "Error";
+    }
+}
